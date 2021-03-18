@@ -1,0 +1,147 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: facial-recongnition
+
+---
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: compreface-api
+  name: compreface-api
+  namespace: facial-recongnition
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: compreface-admin
+  template:
+    metadata:
+      labels:
+        app: compreface-admin
+    spec:
+      containers:
+        - name: compreface-api
+          image: exadel/compreface-api:0.4.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 5005
+              protocol: TCP
+          env:
+          - name: API_JAVA_OPTS
+            value: -Xmx8g
+          - name: POSTGRES_PASSWORD
+            value: postgres
+          - name: POSTGRES_URL
+            value: jdbc:postgresql://postgres.postgres:5432/postgres
+          - name: SPRING_PROFILES_ACTIVE
+            value: dev
+          - name: SAVE_IMAGES_TO_DB
+            value: true
+
+---
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: compreface-admin
+  name: compreface-admin
+  namespace: facial-recongnition
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: compreface-admin
+  template:
+    metadata:
+      labels:
+        app: compreface-admin
+    spec:
+      containers:
+        - name: compreface-admin
+          image: exadel/compreface-admin:0.4.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 5005
+              protocol: TCP
+          env:
+          - name: ADMIN_JAVA_OPTS
+            value: -Xmx8g
+          - name: POSTGRES_PASSWORD
+            value: postgres
+          - name: POSTGRES_URL
+            value: jdbc:postgresql://postgres.postgres:5432/postgres
+          - name: SPRING_PROFILES_ACTIVE
+            value: dev
+          - name: ENABLE_EMAIL_SERVER
+            value: false
+          - name: EMAIL_HOST
+            value: ""
+
+---
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: compreface-fe
+  name: compreface-fe
+  namespace: facial-recongnition
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: compreface-fe
+  template:
+    metadata:
+      labels:
+        app: compreface-fe
+    spec:
+      containers:
+        - name: compreface-ui
+          image: exadel/compreface-fe:0.4.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP
+
+---
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: compreface-core
+  name: compreface-core
+  namespace: facial-recongnition
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: compreface-core
+  template:
+    metadata:
+      labels:
+        app: compreface-core
+    spec:
+      containers:
+        - name: compreface-core
+          image: exadel/compreface-core:0.4.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          env:
+          - name: ML_PORT
+            value: 3000
