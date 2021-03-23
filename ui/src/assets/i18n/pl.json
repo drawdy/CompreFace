@@ -6,7 +6,9 @@
       "yes": "TAK",
       "add": "DODAJ",
       "rename": "ZMIEŃ NAZWĘ",
-      "edit": "EDIT"
+      "edit": "EDIT",
+      "delete": "DELETE",
+      "upload": "UPLOAD"
     },
     "fistName": "Imię",
     "create": "Stwórz",
@@ -79,6 +81,7 @@
       "name": "Nazwa"
     },
     "select_menu": {
+      "upload": "UPLOAD",
       "edit": "EDYTUJ",
       "delete": "USUŃ",
       "test": "TEST"
@@ -140,6 +143,11 @@
   },
   "demo": {
     "title": "Demo"
+  },
+  "face_collection": {
+    "file_size_error": "The photo size is more than 5 Mb",
+    "file_unavailable_extension": "File {{filename}} has an unavailable extension",
+    "subject_empty": "Invalid subject"
   },
   "face_recognition_container": {
     "file_size_error": "Rozmiar zdjęcia to ponad 5 Mb",

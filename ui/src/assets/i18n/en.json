@@ -7,7 +7,8 @@
       "add": "ADD",
       "rename": "RENAME",
       "edit": "EDIT",
-      "delete": "DELETE"
+      "delete": "DELETE",
+      "upload": "UPLOAD"
     },
     "name": "Name",
     "create": "Create",
@@ -81,6 +82,7 @@
       "name": "Name"
     },
     "select_menu": {
+      "upload": "UPLOAD",
       "edit": "EDIT",
       "delete": "DELETE",
       "test": "TEST"
@@ -146,6 +148,11 @@
   "demo": {
     "title": "Demo",
     "link": "Try Demo"
+  },
+  "face_collection": {
+    "file_size_error": "The photo size is more than 5 Mb",
+    "file_unavailable_extension": "File {{filename}} has an unavailable extension",
+    "subject_empty": "Invalid subject"
   },
   "face_recognition_container": {
     "file_size_error": "The photo size is more than 5 Mb",

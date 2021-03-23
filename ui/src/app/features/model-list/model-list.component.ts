@@ -27,6 +27,7 @@ import { ITableConfig } from 'src/app/features/table/table.component';
 import { Routes } from '../../data/enums/routers-url.enum';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
+import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
 import { ModelListFacade } from './model-list-facade';
 
 @Component({
@@ -75,6 +76,17 @@ export class ModelListComponent implements OnInit, OnDestroy {
     input.select();
     document.execCommand('copy');
     document.body.removeChild(input);
+  }
+
+  upload(model: Model) {
+    this.dialog.open(UploadDialogComponent, {
+      width: '600px',
+      data: {
+        entityType: this.translate.instant('models.header'),
+        entityName: model.name,
+        apiKey: model.apiKey,
+      },
+    });
   }
 
   edit(model: Model) {

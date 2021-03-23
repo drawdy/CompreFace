@@ -50,6 +50,9 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="upload.emit(element)">
+            <span>{{ 'models.select_menu.upload' | translate }}</span>
+          </button>
           <button mat-menu-item (click)="edit.emit(element)">
             <span>{{ 'models.select_menu.edit' | translate }}</span>
           </button>

@@ -13,9 +13,10 @@
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Model } from 'src/app/data/interfaces/model';
 import { environment } from 'src/environments/environment';
 
@@ -32,6 +33,17 @@ export class ModelService {
   public create(applicationId: string, name: string): Observable<Model> {
     name = name.trim();
     return this.http.post<Model>(`${environment.adminApiUrl}app/${applicationId}/model`, { name });
+  }
+
+  public uploadFace(apiKey: string, subject: string, file: File): Observable<any> {
+    const url = `${environment.userApiUrl}/faces`;
+    let formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post(url, formData, {
+      headers: {'x-api-key': apiKey},
+      params: {'subject': subject},
+    });
   }
 
   public update(applicationId: string, modelId: string, name: string): Observable<Model> {

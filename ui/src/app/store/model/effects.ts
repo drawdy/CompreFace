@@ -25,6 +25,9 @@ import {
   createModel,
   createModelFail,
   createModelSuccess,
+  uploadFace,
+  uploadFacesSuccess,
+  uploadFacesFail,
   deleteModel,
   deleteModelFail,
   deleteModelSuccess,
@@ -58,6 +61,17 @@ export class ModelEffects {
       this.modelService.create(action.applicationId, action.name).pipe(
         map(model => createModelSuccess({ model })),
         catchError(error => of(createModelFail({ error })))
+      )
+    )
+  );
+
+  @Effect()
+  uploadFace$ = this.actions.pipe(
+    ofType(uploadFace),
+    switchMap(action =>
+      this.modelService.uploadFace(action.apiKey, action.subject, action.file).pipe(
+        map(({image_id:imageId, subject}) => uploadFacesSuccess({ imageId, subject })),
+        catchError(error => of(uploadFacesFail({ error })))
       )
     )
   );

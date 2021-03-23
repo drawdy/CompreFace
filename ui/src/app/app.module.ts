@@ -40,6 +40,7 @@ import { AlertComponent } from './features/alert/alert.component';
 import { BreadcrumbsContainerModule } from './features/breadcrumbs.container/breadcrumbs.container.module';
 import { BreadcrumbsModule } from './features/breadcrumbs/breadcrumbs.module';
 import { DeleteDialogComponent } from './features/delete-dialog/delete-dialog.component';
+import { UploadDialogComponent } from './features/upload-dialog/upload-dialog.component';
 import { EditDialogComponent } from './features/edit-dialog/edit-dialog.component';
 import { FooterModule } from './features/footer/footer.module';
 import { SnackBarModule } from './features/snackbar/snackbar.module';
@@ -48,7 +49,7 @@ import { AppStoreModule } from './store/app-store.module';
 import { MainLayoutComponent } from './ui/main-layout/main-layout.component';
 
 @NgModule({
-  declarations: [AppComponent, MainLayoutComponent, CreateDialogComponent, EditDialogComponent, AlertComponent, DeleteDialogComponent],
+  declarations: [AppComponent, MainLayoutComponent, CreateDialogComponent, EditDialogComponent, UploadDialogComponent, AlertComponent, DeleteDialogComponent],
   imports: [
     BrowserModule,
     CommonModule,
@@ -90,6 +91,6 @@ import { MainLayoutComponent } from './ui/main-layout/main-layout.component';
   ],
   bootstrap: [AppComponent],
   exports: [],
-  entryComponents: [CreateDialogComponent, AlertComponent, EditDialogComponent, DeleteDialogComponent],
+  entryComponents: [CreateDialogComponent, AlertComponent, EditDialogComponent, UploadDialogComponent, DeleteDialogComponent],
 })
 export class AppModule {}

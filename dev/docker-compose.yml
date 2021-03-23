@@ -66,7 +66,7 @@ services:
       dockerfile: docker-prod/Dockerfile
     volumes:
       - ${compreface-fe-volume}
-    container_name: "compreface-ui"
+    container_name: "compreface-fe"
     ports:
       - "8000:80"
     depends_on:

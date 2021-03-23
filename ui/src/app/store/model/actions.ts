@@ -15,7 +15,7 @@
  */
 
 import { createAction, props } from '@ngrx/store';
-import { Model, ModelUpdate } from 'src/app/data/interfaces/model';
+import { Model, ModelUpdate, FacesUpload } from 'src/app/data/interfaces/model';
 
 export const loadModels = createAction('[Model] Load Models', props<{ applicationId: string }>());
 export const loadModelsSuccess = createAction('[Model] Load Models Success', props<{ models: Model[] }>());
@@ -24,6 +24,10 @@ export const loadModelsFail = createAction('[Model] Load Models Fail', props<{ e
 export const createModel = createAction('[Model] Create Model', props<Partial<ModelUpdate>>());
 export const createModelSuccess = createAction('[Model] Create Model Success', props<{ model: Model }>());
 export const createModelFail = createAction('[Model] Create Model Fail', props<{ error: any }>());
+
+export const uploadFace = createAction('[Model] Upload Faces', props<Partial<FacesUpload>>());
+export const uploadFacesSuccess = createAction('[Model] Upload Faces Success', props<{ imageId: string, subject: string }>());
+export const uploadFacesFail = createAction('[Model] Upload Faces Fail', props<{ error: any }>());
 
 export const updateModel = createAction('[Model] Update Model', props<ModelUpdate>());
 export const updateModelSuccess = createAction('[Model] Update Model Success', props<{ model: Model }>());
